@@ -33,7 +33,7 @@ while True:
         guesses += 1
         # TODO Avoid showing the same card twice
         random_card = deck.cards[random.randint(0, len(deck.cards) -1)]
-        answer = input(f"Did the {random_card} appear? ")
+        answer = input(f"Did the {random_card} appear (y/N)? ")
         if ((answer.lower() == 'y' and deck.has_been_played(random_card)) or
                 (answer.lower() in ('n', '') and (not deck.has_been_played(random_card)))):
                 correct += 1
@@ -53,7 +53,7 @@ while True:
     for i in range(len(cards)):
         print(cards[i])
     
-    if (input("Play again? ").lower() != 'y'):
+    if (not (input("Play again (Y/n)?").lower() in ('y', ''))):
         print("Bye!")
         break
     
