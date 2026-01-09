@@ -36,11 +36,18 @@ while True:
     guesses = 0
     wrong = []
     # TODO Prompt for number of guesses
+    shown_cards = []
     for i in range(5):
         guesses += 1
-        # TODO Avoid showing the same card twice
-        random_card = deck.cards[random.randint(0, len(deck.cards) -1)]
+
+        while True:
+            random_card = deck.cards[random.randint(0, len(deck.cards) -1)]
+            if not shown_cards.__contains__(random_card):
+                shown_cards.append(random_card)
+                break
+
         answer = input(f"Did the {random_card} appear (y/N)? ")
+        
         if ((answer.lower() == 'y' and deck.has_been_played(random_card)) or
                 (answer.lower() in ('n', '') and (not deck.has_been_played(random_card)))):
                 correct += 1
