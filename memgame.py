@@ -1,20 +1,27 @@
+#!/usr/bin/python3
 import cardpy
 import random
 
+data = {}
 print('Welcome!')
 while True:
     deck = cardpy.Deck()
     deck.shuffle()
 
     while True:
-        x = input("How many cards should I deal? ")
+        default = ''
+        if data.__contains__('last_guess_count'): 
+            default = f" ({data['last_guess_count']}) "
+        x = input("How many cards should I deal" + default + "? ")
+        if (data.__contains__('last_guess_count') and len(x) == 0):
+            x = data['last_guess_count']
         try:
             if int(x) >= 0 and int(x) <= deck.left():
                 break
         except:
             pass
         print(x, "is invalid")
-    
+    data['last_guess_count'] = x
     
     cards = deck.deal(int(x))
     print("These cards have been dealt:")
@@ -53,7 +60,7 @@ while True:
     for i in range(len(cards)):
         print(cards[i])
     
-    if (not (input("Play again (Y/n)?").lower() in ('y', ''))):
+    if (not (input("Play again (Y/n)?" ).lower() in ('y', ''))):
         print("Bye!")
         break
     
