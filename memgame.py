@@ -60,7 +60,7 @@ while True:
     for i in range(len(cards)):
         print(cards[i])
     
-    if (not (input("Play again (Y/n)?" ).lower() in ('y', ''))):
+    if (not (input("Play again (Y/n)? ").lower() in ('y', ''))):
         print("Bye!")
         break
     
